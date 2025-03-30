@@ -1,0 +1,1 @@
+Map<core::slice::iter::Iter<'_, &str>, {closure@exercises/iterators/iterators2.rs:41:31: 41:34}>
