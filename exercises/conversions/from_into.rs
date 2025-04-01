@@ -40,10 +40,31 @@ impl Default for Person {
 // If while parsing the age, something goes wrong, then return the default of
 // Person Otherwise, then return an instantiated Person object with the results
 
-// I AM NOT DONE
 
 impl From<&str> for Person {
     fn from(s: &str) -> Person {
+        if s.is_empty(){ // 字符串为空
+            return Person::default();
+        }
+
+        let v1:Vec<&str> = s.split(",").collect();// 分割字符串
+
+        if v1.len() != 2 {
+            return Person::default();
+        }
+
+        let name = String::from(v1[0]);// 取出名字
+
+        if name.is_empty(){ // 名字为空
+            return Person::default();
+        }
+
+        let age = match v1[1].parse::<usize>() {
+            Ok(age) => age,
+            _ => return Person::default(),
+        };
+
+        Person { name: name, age: age }
     }
 }
 
